@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "qoGTrv9Cib9QmZ9PUN6iRUz8vW0USXnvcgsRpktQdDhY3oW/OQjnj/Ba83JW6P/Ri0pBoauA3tx5YuEXpET+3g==",
+  "success": true,
+  "projectFilePath": "/home/kallam/PFC/PartA/PartA.csproj",
+  "expectedPackageFiles": [
+    "/home/kallam/.nuget/packages/csvhelper/33.1.0/csvhelper.33.1.0.nupkg.sha512"
+  ],
+  "logs": []
+}
