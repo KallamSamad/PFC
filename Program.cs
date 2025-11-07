@@ -1,4 +1,11 @@
-﻿
+﻿/*
+AI Transparency Statement:
+AI was used to shape parts of this assignment, including outlining ideas and improving the structure of the report.
+All code and written content were developed independently by me. AI suggestions were refined and reviewed to meet the assignment requirements.
+*/
+
+
+
 using System;
 using System.IO;
 using System.Linq;
@@ -90,10 +97,29 @@ namespace MyProject
         }
         public static string GetValidApplianceName()
         {
-            string csvPath = Path.Combine(AppContext.BaseDirectory, "ForbiddenSymbols.csv");
-            List<string> forbiddenSymbols = File.ReadAllLines(csvPath)
-                                            .Where(line => !string.IsNullOrWhiteSpace(line))
-                                            .ToList();
+            List<string> forbiddenSymbols;
+
+            try
+            {
+                string csvPath = Path.Combine(AppContext.BaseDirectory, "ForbiddenSymbols.csv");
+
+                if (File.Exists(csvPath))
+                {
+                    forbiddenSymbols = File.ReadAllLines(csvPath)
+                                        .Where(line => !string.IsNullOrWhiteSpace(line))
+                                        .ToList();
+                }
+                else
+                {
+                    throw new FileNotFoundException();
+                }
+            }
+            catch
+            {
+                //I did this if csv issues occur
+                forbiddenSymbols = new List<string> { "<", ">", "|", "*", "\\", "/", "?", ":" };
+                Console.WriteLine("ForbiddenSymbols.csv is not found. Using default forbidden symbols.\n");
+            }
 
             string appName = "";
 
@@ -110,7 +136,7 @@ namespace MyProject
 
                 if (forbiddenSymbols.Any(symbol => appName.Contains(symbol)))
                 {
-                    Console.WriteLine("Error: Appliance name contains forbidden symbols. Please enter a valid name.");
+                    Console.WriteLine("Appliance name contains forbidden symbols. Please enter a valid name, with numbers or letters only.");
                     continue;
                 }
 
@@ -139,6 +165,67 @@ namespace MyProject
             Calculator.CalcDailyUsage(appName,volume,cycles,waterPrice);
         }
     }
+
+    class HexCalc {
+    private static Dictionary<int, string> LoadHexMap()
+    {
+        string csvPath = Path.Combine(AppContext.BaseDirectory, "hexnumbers.csv");
+        var hexMap = new Dictionary<int, string>();
+
+        try
+        {
+            if (File.Exists(csvPath))
+            {
+                var lines = File.ReadAllLines(csvPath).Skip(1); // skip header
+                foreach (var line in lines)
+                {
+                    var parts = line.Split(',');
+                    if (parts.Length == 2 && int.TryParse(parts[0], out int num))
+                    {
+                        hexMap[num] = parts[1].Trim();
+                    }
+                }
+            }
+            else
+            {
+                throw new FileNotFoundException();
+            }
+        }
+        catch
+        {
+            // Default fallback if CSV not found or broken
+            string[] defaultHex = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F" };
+            for (int i = 0; i < 16; i++)
+                hexMap[i] = defaultHex[i];
+            Console.WriteLine("hexnumbers.csv not found. Using default hex mapping.\n");
+        }
+
+        return hexMap;
+    }
+
+    public static void RunHexCalc()
+    {
+        var hexMap = LoadHexMap();
+        int denary = MenuHelper.ValidChoice("Enter the base 10 number you want to convert to Hexadecimal:", 0, 999999999);
+
+        if (denary == 0)
+        {
+            Console.WriteLine("0x0");
+            return;
+        }
+
+        var remainder = new List<string>();
+        while (denary > 0)
+        {
+            int digit = denary % 16;
+            remainder.Add(hexMap[digit]);
+            denary /= 16;
+        }
+
+        remainder.Reverse();
+        Console.WriteLine($"Hexadecimal: 0x{string.Join("", remainder)}\n");
+    }
+}
     
     class Program
     {
@@ -173,13 +260,14 @@ namespace MyProject
 
                         break;
                         case 2:
-                        Console.WriteLine($"\n Running {options[SelectedOption-1]} \n");
+                        Console.WriteLine($"\nRunning {options[SelectedOption-1]} \n");
                         break;
                         case 3:
-                        Console.WriteLine($"\n Running {options[SelectedOption-1]} \n");
+                        Console.WriteLine($"\nRunning {options[SelectedOption-1]} \n");
+                        HexCalc.RunHexCalc();
                         break;
                         case 4:
-                        Console.WriteLine("\n Terminated the Program. \n ");
+                        Console.WriteLine("\nTerminated the Program. \n ");
                         menuState=true;
                         break;
                         
