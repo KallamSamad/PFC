@@ -17,3 +17,4 @@
 /home/kallam/PFC/PartA/obj/Debug/net8.0/PartA.csproj.AssemblyReference.cache
 /home/kallam/PFC/PartA/obj/Debug/net8.0/PartA.csproj.CopyComplete
 /home/kallam/PFC/PartA/bin/Debug/net8.0/ForbiddenSymbols.csv
+/home/kallam/PFC/PartA/bin/Debug/net8.0/hexnumbers.csv
