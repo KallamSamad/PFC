@@ -166,6 +166,29 @@ namespace MyProject
         }
     }
 
+    class Book{
+    
+        public string Title{get;set;
+
+        }
+        public string Author{get;set;
+
+        }
+        public string Genre{get;set;
+
+        }
+    }
+    class FictionBook : Book{
+
+    }
+    class NonFictionBook: Book{
+
+    }
+    class LibraryCatalogue{}
+
+
+
+
     class HexCalc {
     private static Dictionary<int, string> LoadHexMap()
     {
