@@ -1,0 +1,10 @@
+[
+  {
+    "Title": "Lord Of the Rings",
+    "Author": "J.R.R. Tolkien",
+    "Genre": [
+      "Adventure"
+    ],
+    "IsFiction": true
+  }
+]

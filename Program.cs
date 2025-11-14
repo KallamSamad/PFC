@@ -7,6 +7,7 @@ All code and written content were developed independently by me. AI suggestions 
 
 
 using System;
+using System.Text.Json;
 using System.IO;
 using System.Linq;
 using System.Collections.Generic;
@@ -70,6 +71,8 @@ namespace MyProject
     }
  
     class Calculator{
+        static List<string> forbiddenSymbols = LibraryCatalogue.LoadForbiddenSymbols();
+
         public static void Calculations(string appliance, decimal dailyUsage, decimal waterPrice){
             decimal monthlyUsage=dailyUsage*30;
             decimal yearlyUsage=dailyUsage*365;
@@ -94,63 +97,47 @@ namespace MyProject
         public static void CalcDailyUsage(string appliance,decimal volume, decimal cycles, decimal waterPrice){
             decimal dailyUsage=volume*cycles;
             Calculator.Calculations(appliance,dailyUsage,waterPrice);
-        }
-        public static string GetValidApplianceName()
+                }
+
+       public static string GetValidInput(string prompt, List<string> forbiddenSymbols)
+{
+    string input = "";
+
+    while (true)
+    {
+        Console.WriteLine(prompt);
+        input = Console.ReadLine()?.Trim() ?? "";
+
+      
+        if (string.IsNullOrEmpty(input))
         {
-            List<string> forbiddenSymbols;
-
-            try
-            {
-                string csvPath = Path.Combine(AppContext.BaseDirectory, "ForbiddenSymbols.csv");
-
-                if (File.Exists(csvPath))
-                {
-                    forbiddenSymbols = File.ReadAllLines(csvPath)
-                                        .Where(line => !string.IsNullOrWhiteSpace(line))
-                                        .ToList();
-                }
-                else
-                {
-                    throw new FileNotFoundException();
-                }
-            }
-            catch
-            {
-                //I did this if csv issues occur
-                forbiddenSymbols = new List<string> { "<", ">", "|", "*", "\\", "/", "?", ":" };
-                Console.WriteLine("ForbiddenSymbols.csv is not found. Using default forbidden symbols.\n");
-            }
-
-            string appName = "";
-
-            while (true)
-            {
-                Console.WriteLine("Enter the name of Appliance:");
-                appName = Console.ReadLine()?.Trim() ?? "";
-
-                if (string.IsNullOrEmpty(appName))
-                {
-                    Console.WriteLine("Appliance name cannot be empty. Please enter a valid name.");
-                    continue;
-                }
-
-                if (forbiddenSymbols.Any(symbol => appName.Contains(symbol)))
-                {
-                    Console.WriteLine("Appliance name contains forbidden symbols. Please enter a valid name, with numbers or letters only.");
-                    continue;
-                }
-
-                break;
-            }
-
-            return appName;
+            Console.WriteLine("Input cannot be empty. Please enter a valid value.");
+            continue;
         }
+
+    
+        if (input.Any(ch => forbiddenSymbols.Contains(ch.ToString())))
+        {
+            Console.WriteLine("Input contains forbidden symbols. Please try again.");
+            continue;
+        }
+
+         
+        break;
+    }
+
+    return input;
+}
+
+
+
 
 
     
     public static void RunCalculator(){
+        var forbiddenSymbols = LibraryCatalogue.LoadForbiddenSymbols();
 
-        string appName=GetValidApplianceName();
+        string appName=GetValidInput("Enter Appliance Name:",forbiddenSymbols);
         int SelectedOption=MenuHelper.ValidChoice("\nPick 1 or 2:\n1) For Time-Based Appliances \n2) For Cycle based appliances \n",1,2);
         if (SelectedOption==1){
             decimal flowRate=MenuHelper.ValidChoice("Enter the flow rate (Litres/Minute)",0m,999999999m);
@@ -174,8 +161,22 @@ namespace MyProject
         public string Author{get;set;
 
         }
-        public string Genre{get;set;
+        public List<string> Genre{get;set;
+        }
+        public bool IsFiction { get; set;
+         }
+        public Book()
+        {
+            Title = "";
+            Author = "";
+            Genre = new List<string>(); 
+        }
 
+        public Book(string title, string author, List<string> genre)
+        {
+            Title = title;
+            Author = author;
+            Genre = genre;
         }
     }
     class FictionBook : Book{
@@ -184,9 +185,187 @@ namespace MyProject
     class NonFictionBook: Book{
 
     }
-    class LibraryCatalogue{}
+    class LibraryCatalogue{
+    private static List<Book> books = new List<Book>();
+    private static string filePath = "books.json";
+    public static List<string> LoadForbiddenSymbols()
+{
+    string csvPath = Path.Combine(AppContext.BaseDirectory, "ForbiddenSymbols.csv");
+
+    if (File.Exists(csvPath))
+    {
+        return File.ReadAllLines(csvPath)
+                .Where(line => !string.IsNullOrWhiteSpace(line))
+                .Select(line => line.Trim().Trim('"'))
+                .ToList();
+    }
+    else
+    {
+        Console.WriteLine("ForbiddenSymbols.csv not found. Using default list.");
+        return new List<string> { "<", ">", "|", "*", "\\", "/", "?", ":", "!", "\"" };
+    }
+}
 
 
+    public static void SaveCatalogue()
+    {
+        string json = JsonSerializer.Serialize(books, new JsonSerializerOptions { WriteIndented = true });
+        File.WriteAllText(filePath, json);
+        Console.WriteLine("Catalogue saved to JSON.");
+    }
+
+    public static void LoadCatalogue()
+    {
+        if (File.Exists(filePath))
+        {
+            string json = File.ReadAllText(filePath);
+            books = JsonSerializer.Deserialize<List<Book>>(json) ?? new List<Book>();
+            Console.WriteLine("Catalogue loaded from JSON.");
+        }
+        else
+        {
+            books = new List<Book>();
+        }
+    }
+      public static void  AddBook(Book b){
+        books.Add(b);
+        Console.WriteLine($"Book '{b.Title}' added.");
+            
+        }
+        public static void RemoveBook(string title){
+            var book=books.FirstOrDefault(b=>b.Title.Equals(title, StringComparison.OrdinalIgnoreCase));
+            if (book!=null)
+            {
+                books.Remove(book);
+                Console.WriteLine($"Book '{title}' removed.");
+            }
+            else{
+                Console.WriteLine($"Book '{title}' not found");
+            }
+        }
+        public static List<Book> FindByGenre(string genre, bool? isFiction = null)
+        {
+            return books.Where(b => b.Genre.Contains(genre) && 
+                                    (isFiction == null || b.IsFiction == isFiction))
+                        .ToList();
+        }
+
+      public static List<Book> ListOfAllBooks(){
+        return books;
+      }
+private static List<string> FictionGenres = new List<string> 
+{ "Horror", "Science Fiction", "Crime", "Thriller", "Adventure" };
+
+private static List<string> NonFictionGenres = new List<string> 
+{ "Autobiography", "History", "Science", "Philosophy" };
+
+public static void LibMain()
+{
+    var forbiddenSymbols = LoadForbiddenSymbols();
+    LoadCatalogue();
+    bool back = false;
+
+    while (!back)
+    {
+        List<string> options1 = new List<string>
+        {
+            "Add Book",
+            "Remove Book",
+            "Filter By Genre",
+            "List of all Books",
+            "Back to Main Menu"
+        };
+
+        MenuHelper.Menu(options1);
+        int selectedOption = MenuHelper.ValidChoice("Choose 1-5:", 1, 5);
+
+        switch (selectedOption)
+        {
+        case 1:{
+        string title = GetValidInput("Enter Title:", forbiddenSymbols);
+        string author = GetValidInput("Enter Author:", forbiddenSymbols);
+
+        Console.WriteLine("Choose Category:");
+        List<string> categories = new List<string> { "Fiction", "Non-Fiction" };
+        MenuHelper.Menu(categories);
+        int categoryChoice = MenuHelper.ValidChoice("Choose 1 for Fiction and 2 for Non fiction: ", 1, 2);
+        bool isFiction = categoryChoice == 1;
+
+        Console.WriteLine("Choose Genre:");
+        var genreList = isFiction ? FictionGenres : NonFictionGenres;
+        MenuHelper.Menu(genreList);
+        int genreChoice = MenuHelper.ValidChoice("Choose 1-" + genreList.Count + ":", 1, genreList.Count);
+        string genre = genreList[genreChoice - 1];
+
+        Book newBook = new Book
+        {
+            Title = title,
+            Author = author,
+            Genre = new List<string> { genre },
+            IsFiction = isFiction
+        };
+
+        AddBook(newBook);
+        SaveCatalogue();
+        break;
+        }
+
+            case 2:{
+                string removeTitle = GetValidInput("Enter Title of book to remove:", forbiddenSymbols);
+                RemoveBook(removeTitle);
+                SaveCatalogue();
+                break;
+    }
+
+            case 3:
+            {
+               Console.WriteLine("Choose Category:");
+               List<string> filterCategories = new List<string> { "Fiction", "Non-Fiction" };
+               int filterCategoryChoice = MenuHelper.ValidChoice("Choose 1-2:", 1, 2);
+               bool isFictionFilter = filterCategoryChoice == 1;
+
+
+                Console.WriteLine("Choose Genre:");
+                var genreListFilter = isFictionFilter ? FictionGenres : NonFictionGenres;
+                MenuHelper.Menu(genreListFilter);
+                int filterChoice = MenuHelper.ValidChoice("Choose 1-" + genreListFilter.Count + ":", 1, genreListFilter.Count);
+                string filterGenre = genreListFilter[filterChoice - 1];
+
+                var results = FindByGenre(filterGenre, isFictionFilter);
+                if (results.Count == 0)
+                    Console.WriteLine($"No books found in genre '{filterGenre}'.");
+                else
+                {
+                    Console.WriteLine($"Books in genre '{filterGenre}':");
+                    foreach (var b in results)
+                        Console.WriteLine($"- {b.Title} by {b.Author}");
+                }
+                break;
+            }
+
+                case 4:
+                {
+                    var allBooks = ListOfAllBooks();
+                    if (allBooks.Count == 0)
+                        Console.WriteLine("No books in catalogue.");
+                    else
+                    {
+                        Console.WriteLine("All books in catalogue:");
+                        foreach (var b in allBooks)
+                            Console.WriteLine($"- {b.Title} by {b.Author} ({string.Join(", ", b.Genre)}) [{(b.IsFiction ? "Fiction" : "Non-Fiction")}]");
+                    }
+                    break;
+                }
+
+
+            case 5:
+            {
+                back = true;
+                break;
+            }
+    }          
+
+    }}
 
 
     class HexCalc {
@@ -284,6 +463,7 @@ namespace MyProject
                         break;
                         case 2:
                         Console.WriteLine($"\nRunning {options[SelectedOption-1]} \n");
+                        LibraryCatalogue.LibMain();
                         break;
                         case 3:
                         Console.WriteLine($"\nRunning {options[SelectedOption-1]} \n");
@@ -299,4 +479,4 @@ namespace MyProject
 
             }
         }
-}}
+}}}
