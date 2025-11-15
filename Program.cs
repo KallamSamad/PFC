@@ -321,7 +321,7 @@ public static void LibMain()
             {
                Console.WriteLine("Choose Category:");
                List<string> filterCategories = new List<string> { "Fiction", "Non-Fiction" };
-               int filterCategoryChoice = MenuHelper.ValidChoice("Choose 1-2:", 1, 2);
+               int filterCategoryChoice = MenuHelper.ValidChoice("1) Choose Fiction 2) Choose Non-fiction:", 1, 2);
                bool isFictionFilter = filterCategoryChoice == 1;
 
 
