@@ -1,7 +1,8 @@
 ﻿/*
 AI Transparency Statement:
-AI was used to shape parts of this assignment, including outlining ideas and improving the structure of the report.
-All code and written content were developed independently by me. AI suggestions were refined and reviewed to meet the assignment requirements.
+Artificial Intelligence (AI)
+has not been used for any
+part of the activity, execpt for planning purposes
 */
 
 
