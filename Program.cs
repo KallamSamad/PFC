@@ -1,10 +1,527 @@
 ﻿/*
 AI Transparency Statement:
-Artificial Intelligence (AI)
-has not been used for any
-part of the activity, execpt for planning purposes
+AI was used to shape parts of this assignment, including outlining ideas and improving the structure of the report.
+All code and written content were developed independently by me. AI suggestions were refined and reviewed to meet the assignment requirements.
 */
 
+/* Test Plan
+
+(1) MenuHelper.ValidChoice(int) method
+
+   input                 Expected Result                                      Actual Result
+|----------------------|--------------------------------------|-------------------------------------------------|
+1) 1                    Running Household Cost Calculator              Running Household Cost Calculator
+2) 2                    Runnning Library Catalogue                     Running Library Catalouge
+3) 3                    Running Hexadecimal Calculator                 Running Hexadecimal Calculator
+4) 4                    Terminated Program                             Terminated Program
+5) 0                    Invalid input! Choose a number from 1-4        Invalid input! Choose a number from 1-4
+6) 10                   Invalid input! Choose a number from 1-4        Invalid input! Choose a number from 1-4
+7) 100                  Invalid input! Choose a number from 1-4        Invalid input! Choose a number from 1-4     
+8) 1000                 Invalid input! Choose a number from 1-4        Invalid input! Choose a number from 1-4 
+9) 1000000000000000     Invalid input! Choose a number from 1-4        Invalid input! Choose a number from 1-4 
+9) -10                  Invalid input! Choose a number from 1-4        Invalid input! Choose a number from 1-4     
+10) -100                Invalid input! Choose a number from 1-4        Invalid input! Choose a number from 1-4
+11) -1000               Invalid input! Choose a number from 1-4        Invalid input! Choose a number from 1-4
+12) -1000000000000000   Invalid input! Choose a number from 1-4        Invalid input! Choose a number from 1-4
+13) !                   Invalid input! Choose a number from 1-4        Invalid input! Choose a number from 1-4
+14)@                    Invalid input! Choose a number from 1-4        Invalid input! Choose a number from 1-4
+15)#                    Invalid input! Choose a number from 1-4        Invalid input! Choose a number from 1-4
+16)$                    Invalid input! Choose a number from 1-4        Invalid input! Choose a number from 1-4
+17) %                   Invalid input! Choose a number from 1-4        Invalid input! Choose a number from 1-4
+18) ^                   Invalid input! Choose a number from 1-4        Invalid input! Choose a number from 1-4
+19) &                   Invalid input! Choose a number from 1-4        Invalid input! Choose a number from 1-4        
+20) *                   Invalid input! Choose a number from 1-4        Invalid input! Choose a number from 1-4    
+21) (                   Invalid input! Choose a number from 1-4        Invalid input! Choose a number from 1-4    
+22) )                   Invalid input! Choose a number from 1-4        Invalid input! Choose a number from 1-4    
+23) _                   Invalid input! Choose a number from 1-4        Invalid input! Choose a number from 1-4    
+24) +                   Invalid input! Choose a number from 1-4        Invalid input! Choose a number from 1-4    
+25) [                   Invalid input! Choose a number from 1-4        Invalid input! Choose a number from 1-4
+26) ]                   Invalid input! Choose a number from 1-4        Invalid input! Choose a number from 1-4    
+27) ;                   Invalid input! Choose a number from 1-4        Invalid input! Choose a number from 1-4    
+28) .                   Invalid input! Choose a number from 1-4        Invalid input! Choose a number from 1-4           
+29) ,                   Invalid input! Choose a number from 1-4        Invalid input! Choose a number from 1-4    
+30) <                   Invalid input! Choose a number from 1-4        Invalid input! Choose a number from 1-4    
+31) .                   Invalid input! Choose a number from 1-4        Invalid input! Choose a number from 1-4    
+32) !@##@$#%$%$^%#      Invalid input! Choose a number from 1-4        Invalid input! Choose a number from 1-4    
+33) null                Invalid input! Choose a number from 1-4        (endless loop)Invalid input! Choose a number from 1-4 
+^ for 33) I manually changed choice to null and got infinite loop of invalid inputs, so theres an issue there
+
+34) abcdefg             Invalid input! Choose a number from 1-4        Invalid input! Choose a number from 1-4        
+35) 3.14                Invalid input! Choose a number from 1-4        Invalid input! Choose a number from 1-4    
+36) 2.0                 Invalid input! Choose a number from 1-4        Invalid input! Choose a number from 1-4        
+37) " " (space)         Invalid input! Choose a number from 1-4        Invalid input! Choose a number from 1-4        
+38) " "                 Invalid input! Choose a number from 1-4        Invalid input! Choose a number from 1-4        
+39) 😂                   Invalid input! Choose a number from 1-4        Invalid input! Choose a number from 1-4           
+40) 你好                 Invalid input! Choose a number from 1-4        Invalid input! Choose a number from 1-4           
+
+(2) Appliance Name
+
+1)1                   Accepts value because appliance can be numerical  Accepts value because appliance can be numerical 
+
+Note - I could've improved by creating a JSON file  for the appliances
+also I could've added numbers in forbidden symbols too, but
+I chose to keep it because applainces could be numerical
+
+
+2)2                   Accepts value because appliance can be numerical  Accepts value because appliance can be numerical
+3)3                   Accepts value because appliance can be numerical   Accepts value because appliance can be numerical      
+4)4                   Accepts value because appliance can be numerical   Accepts value because appliance can be numerical    
+5)0                   Accepts value because appliance can be numerical   Accepts value because appliance can be numerical   
+6)10                  Accepts value because appliance can be numerical   Accepts value because appliance can be numerical
+7)100                 Accepts value because appliance can be numerical   Accepts value because appliance can be numerical
+8)1000                Accepts value because appliance can be numerical   Accepts value because appliance can be numerical
+9)1000000000000000    Accepts value because appliance can be numerical   Accepts value because appliance can be numerical                    
+10)-10                Ignore because won't need negatives in appliance name  Erroneously accepts the value 
+11)-100               Ignore because won't need negatives in appliance name  Erroneously accepts the value  
+12)-1000              Ignore because won't need negatives in appliance name  Erroneously accepts the value  
+13)-1000000000000000  Ignore because won't need negatives in appliance name  Erroneously accepts the value  
+14)!                  Ignore because it is a forbidden symbol             Doesn't accept - Input contains forbidden symbols. Please try again 
+15)@                  Ignore because it is a forbidden symbol             Doesn't accept - Input contains forbidden symbols. Please try again   
+16)#                  Ignore because it is a forbidden symbol             Doesn't accept - Input contains forbidden symbols. Please try again   
+17)$                  Ignore because it is a forbidden symbol             Doesn't accept - Input contains forbidden symbols. Please try again   
+18)%                  Ignore because it is a forbidden symbol             Doesn't accept - Input contains forbidden symbols. Please try again   
+19)^                  Ignore because it is a forbidden symbol             Doesn't accept - Input contains forbidden symbols. Please try again   
+20)&                  Ignore because it is a forbidden symbol             Doesn't accept - Input contains forbidden symbols. Please try again   
+21)*                  Ignore because it is a forbidden symbol             Doesn't accept - Input contains forbidden symbols. Please try again  
+22)(                  Ignore because it is a forbidden symbol             Doesn't accept - Input contains forbidden symbols. Please try again   
+23))                  Ignore because it is a forbidden symbol             Doesn't accept - Input contains forbidden symbols. Please try again   
+24)_                  Ignore because it is a forbidden symbol             Doesn't accept - Input contains forbidden symbols. Please try again   
+25)+                  Ignore because it is a forbidden symbol             Doesn't accept - Input contains forbidden symbols. Please try again   
+26)[                  Ignore because it is a forbidden symbol             Doesn't accept - Input contains forbidden symbols. Please try again   
+27)]                  Ignore because it is a forbidden symbol             Doesn't accept - Input contains forbidden symbols. Please try again   
+28);                  Ignore because it is a forbidden symbol             Doesn't accept - Input contains forbidden symbols. Please try again   
+29).                  Ignore because it is a forbidden symbol             IS accepted
+Note for 29) input of '.' is accepted
+but it was intentional as GetValidInput()
+is used for library catalogue and some authors have a period
+in the name, same goes for "-"
+
+
+30),                  Ignore because it is a forbidden symbol             Doesn't accept - Input contains forbidden symbols. Please try again   
+31)<                  Ignore because it is a forbidden symbol             Doesn't accept - Input contains forbidden symbols. Please try again         
+32)!@##@$#%$%$^%#     Ignore because it is a forbidden symbol             Doesn't accept - Input contains forbidden symbols. Please try again   
+33)null               Ignore because it is a forbidden symbol             Accepts which is bad    
+^ for 33) I manually changed choice to null and got infinite loop of invalid inputs, so theres an issue there
+34)abcdefg            Accepts the string                                  Accepts the string   
+35)3.14               Accepts the string                                  Accepts the string     
+36)2.0                Accepts the string                                  Accepts the string     
+37)" " (space)        Doesn't accept                                      Doesn't accept "Input cannot be empty. Please enter a valid value."  
+38)"" (empty input)   DOesn't accept                                      Does accept
+39)😂                 Doesn't accept                                       Does accept  
+40)你好                Doesn't accept                                      Does accept
+41)-                    Ignore because it is a forbidden symbol             IS accepted
+
+
+Reflection from (2) I need to 
+populate my forbidden symbols.csv
+to catch erroneous inputs
+Also I need to consider whether I should use numbers
+or not
+
+
+(3) MenuHelper.ValidChoice(decimal)
+
+1)1                         Accepted it is an integer       Accepted
+2)2                         Accepted it is an integer       Accepted
+3)3                         Accepted it is an integer       Accepted
+4)4                         Accepted it is an integer       Accepted
+5)0                         Accepted it is an integer       Accepted    
+6)10                        Accepted it is an integer       Accepted
+7)100                       Accepted it is an integer       Accepted
+8)1000                      Accepted it is an integer       Accepted
+9)1000000000000000          Accepted it is an integer       NOT accepted "Invalid input! Choose a number from 0-999999999"
+10)-10                      Not accepted as is negative     NOT accepted Invalid input! Choose a number from 0-999999999
+11)-100                     Not accepted as is negative     NOT accepted Invalid input! Choose a number from 0-999999999
+12)-1000                    Not accepted as is negative     NOT accepted Invalid input! Choose a number from 0-999999999
+13)-1000000000000000        Not accepted as is negative     NOT accepted Invalid input! Choose a number from 0-999999999    
+14)!                        Not accepted as is  NaN         NOT accepted Invalid input! Choose a number from 0-999999999
+15)@                        Not accepted as is  NaN         NOT accepted Invalid input! Choose a number from 0-999999999
+16)#                        Not accepted as is  NaN         NOT accepted Invalid input! Choose a number from 0-999999999                       
+17)$                        Not accepted as is  NaN         NOT accepted Invalid input! Choose a number from 0-999999999
+18)%                        Not accepted as is  NaN         NOT accepted Invalid input! Choose a number from 0-999999999
+19)^                        Not accepted as is  NaN         NOT accepted Invalid input! Choose a number from 0-999999999
+20)&                        Not accepted as is  NaN         NOT accepted Invalid input! Choose a number from 0-999999999
+21)*                        Not accepted as is  NaN         NOT accepted Invalid input! Choose a number from 0-999999999
+22)(                        Not accepted as is  NaN         NOT accepted Invalid input! Choose a number from 0-999999999
+23))                        Not accepted as is  NaN         NOT accepted Invalid input! Choose a number from 0-999999999
+24)_                        Not accepted as is  NaN         NOT accepted Invalid input! Choose a number from 0-999999999
+25)+                        Not accepted as is  NaN         NOT accepted Invalid input! Choose a number from 0-999999999
+26)[                        Not accepted as is  NaN         NOT accepted Invalid input! Choose a number from 0-999999999
+27)]                        Not accepted as is  NaN         NOT accepted Invalid input! Choose a number from 0-999999999
+28);                        Not accepted as is  NaN         NOT accepted Invalid input! Choose a number from 0-999999999
+29).                        Not accepted as is  NaN         NOT accepted Invalid input! Choose a number from 0-999999999
+30),                        Not accepted as is  NaN         NOT accepted Invalid input! Choose a number from 0-999999999
+31)<                        Not accepted as is  NaN         NOT accepted Invalid input! Choose a number from 0-999999999
+32)!@##@$#%$%$^%#           Not accepted as is  NaN         NOT accepted Invalid input! Choose a number from 0-999999999
+33)null                     Not accepted as is Null         Throws CS0037 error
+34)abcdefg                  Not accepted as is  NaN         NOT accepted Invalid input! Choose a number from 0-999999999
+35)3.14                     Accepted it is a decimal        Accepted
+36)2.0                      Accepted it is a decimal        Accepted
+37)" " (space)              Not accepted as is  NaN         NOT accepted Invalid input! Choose a number from 0-999999999
+38)"" (empty input)         Not accepted as is  NaN         NOT accepted Invalid input! Choose a number from 0-999999999
+39)😂                       Not accepted as is  NaN         NOT accepted Invalid input! Choose a number from 0-999999999
+40)你好                      Not accepted as is  NaN         NOT accepted Invalid input! Choose a number from 0-999999999   
+
+(4) Y/N loop
+
+1)yes                       Is Acceptted                    Is accepted
+2)yeS                       Is Acceptted                    Is accepted
+3)yEs                       Is Acceptted                    Is accepted
+4)yES                       Is Acceptted                    Is accepted
+5)Yes                       Is Acceptted                    Is accepted
+6)YeS                       Is Acceptted                    Is accepted
+7)YEs                       Is Acceptted                    Is accepted
+8)YES                       Is Acceptted                    Is accepted
+9)no                        Is Acceptted                    Is accepted
+10)nO                       Is Acceptted                    Is accepted
+11)No                       Is Acceptted                    Is accepted
+12)NO                       Is Acceptted                    Is accepted
+13) Y                       Is Acceptted                    Is accepted
+14) N                       Is Acceptted                    Is accepted
+15) n                       Is Acceptted                    Is accepted
+16) y                       Is Acceptted                    Is accepted
+17)!                        Won't be accepted               Isn't accepted "Invalid input! Enter Y/N"
+18)@                        Won't be accepted               Isn't accepted "Invalid input! Enter Y/N"
+19)#                        Won't be accepted               Isn't accepted "Invalid input! Enter Y/N"
+20)$                        Won't be accepted               Isn't accepted "Invalid input! Enter Y/N"
+21)%                        Won't be accepted               Isn't accepted "Invalid input! Enter Y/N"
+22)^                        Won't be accepted               Isn't accepted "Invalid input! Enter Y/N"
+23)&                        Won't be accepted               Isn't accepted "Invalid input! Enter Y/N"
+24)*                        Won't be accepted               Isn't accepted "Invalid input! Enter Y/N"
+25)(                        Won't be accepted               Isn't accepted "Invalid input! Enter Y/N"
+26))                        Won't be accepted               Isn't accepted "Invalid input! Enter Y/N"
+27)                         Won't be accepted               Isn't accepted "Invalid input! Enter Y/N"_
+28)+                        Won't be accepted               Isn't accepted "Invalid input! Enter Y/N"
+29)=                        Won't be accepted               Isn't accepted "Invalid input! Enter Y/N"
+30)[                        Won't be accepted               Isn't accepted "Invalid input! Enter Y/N"
+31)]                        Won't be accepted               Isn't accepted "Invalid input! Enter Y/N"
+32)|                        Won't be accepted               Isn't accepted "Invalid input! Enter Y/N"
+33)/                        Won't be accepted               Isn't accepted "Invalid input! Enter Y/N"
+34)\                        Won't be accepted               Isn't accepted "Invalid input! Enter Y/N"
+35):                        Won't be accepted               Isn't accepted "Invalid input! Enter Y/N"
+36>;                        Won't be accepted               Isn't accepted "Invalid input! Enter Y/N"
+37)<                        Won't be accepted               Isn't accepted "Invalid input! Enter Y/N"
+38>,                        Won't be accepted               Isn't accepted "Invalid input! Enter Y/N"
+39>.                        Won't be accepted               Isn't accepted "Invalid input! Enter Y/N"
+40)0                        Won't be accepted               Isn't accepted "Invalid input! Enter Y/N"
+41)1                        Won't be accepted               Isn't accepted "Invalid input! Enter Y/N"
+42)2                        Won't be accepted               Isn't accepted "Invalid input! Enter Y/N"
+43)10                       Won't be accepted               Isn't accepted "Invalid input! Enter Y/N"
+44)999                      Won't be accepted               Isn't accepted "Invalid input! Enter Y/N"
+45)-1                       Won't be accepted               Isn't accepted "Invalid input! Enter Y/N"
+46)-100                     Won't be accepted               Isn't accepted "Invalid input! Enter Y/N"
+47)a                        Won't be accepted               Isn't accepted "Invalid input! Enter Y/N"
+48)abc                      Won't be accepted               Isn't accepted "Invalid input! Enter Y/N"
+49)nope                     Won't be accepted               Isn't accepted "Invalid input! Enter Y/N"
+50)ye                       Won't be accepted               Isn't accepted "Invalid input! Enter Y/N"
+51)yess                     Won't be accepted               Isn't accepted "Invalid input! Enter Y/N"
+52)n0                       Won't be accepted               Isn't accepted "Invalid input! Enter Y/N"
+53)""                       Won't be accepted               Isn't accepted "Invalid input! Enter Y/N"
+54)" "                      Won't be accepted               Isn't accepted "Invalid input! Enter Y/N"
+55)" "                      Won't be accepted               Isn't accepted "Invalid input! Enter Y/N"
+56)😂                        Won't be accepted               Isn't accepted "Invalid input! Enter Y/N"
+57)👍                        Won't be accepted               Isn't accepted "Invalid input! Enter Y/N"
+58)你好                        Won't be accepted               Isn't accepted "Invalid input! Enter Y/N"
+59)はい                        Won't be accepted               Isn't accepted "Invalid input! Enter Y/N"
+60)да
+61)null                       Won't be accepted             Endless looprejecting it
+
+
+------NOTE-----
+The above meethods are reused throughout the program so it is uneccasssary to
+re-test them as they will be the same
+
+
+(4) Text File creation
+1) Create a text file with an applaince calleed "shower" 
+
+Inputs
+-----------------------------------------------------------------------
+Shower, 22, 2,  2.5
+
+Expected
+-----------------------------------------------------------------------
+ Creeates a text file with a shower appliance, and the reespectiive, calculated, values
+
+ Output
+ ----------------------------------------------------------------------
+Shower
+------------------
+Daily usage (L): 44.00
+Monthly usage (L): 1320.00
+Yearly usage (L): 16060.00
+Estimated Daily Cost (£): £0.11
+Estimated Monthly Cost (£): £3.30
+Estimated Yearly Cost (£): £40.15
+------------------
+
+
+2) Create a text file with an applaince calleed "Washinng Machine" 
+
+Inputs
+-----------------------------------------------------------------------
+Washing Machine, 22, 2,  2.5
+
+Expected
+-----------------------------------------------------------------------
+ Creates a text file with a Washing Machine appliance, and the respectiive, calculated, values
+
+ Output
+ ----------------------------------------------------------------------
+Washing Machine
+------------------
+Daily usage (L): 44.00
+Monthly usage (L): 1320.00
+Yearly usage (L): 16060.00
+Estimated Daily Cost (£): £0.11
+Estimated Monthly Cost (£): £3.30
+Estimated Yearly Cost (£): £40.15
+
+
+3) Special characterrs Washing-Machine
+
+Inputs
+-----------------------------------------------------------------------
+Washing-Machine, 22, 2,  2.5
+
+Expected
+-----------------------------------------------------------------------
+ Creates a text file with a shower appliance, and the respectiive, calculated, values
+
+Washing-machine
+------------------
+Daily usage (L): 44.00
+Monthly usage (L): 1320.00
+Yearly usage (L): 16060.00
+Estimated Daily Cost (£): £0.11
+Estimated Monthly Cost (£): £3.30
+Estimated Yearly Cost (£): £40.15
+
+
+4) Using large numbers as inputs
+
+
+Inputts default name, 9999999999999
+
+Expecteed: wont be acccepted
+Result: Refuses nnumber - out of range
+
+5) Empty name
+
+Input: space
+expected: rejecteed
+resuult : rejected
+---------------------------
+
+(6) Behaviour tests for Water cost calculuaator
+
+Input (all apps are called shower)
+
+flowRate = 10, minutes = 5, price = 2
+
+Expected: To work annd create reciept
+Result: 
+
+Shower
+------------------
+Daily usage (L): 50.00
+Monthly usage (L): 1500.00
+Yearly usage (L): 18250.00
+Estimated Daily Cost (£): £0.10
+Estimated Monthly Cost (£): £3.00
+Estimated Yearly Cost (£): £36.50
+
+Successfully creaated
+---------------------------------------------
+
+Inputs
+flowRate = 0, minutes = 100, price = 1 
+Expected: all values will be 0
+
+Result:
+
+SHower
+------------------
+Daily usage (L): 0.00
+Monthly usage (L): 0.00
+Yearly usage (L): 0.00
+Estimated Daily Cost (£): £0.00
+Estimated Monthly Cost (£): £0.00
+Estimated Yearly Cost (£): £0.00
+
+
+ Receipt has been created and saved to WaterUsageReceipt.txt
+
+
+B) Cycle-Based Appliance Calculation Tests
+
+Inputs: 
+volume = 5, cycles = 3, price = 1
+Expecteed: SHould work
+
+Result:
+
+shower
+------------------
+Daily usage (L): 15.00
+Monthly usage (L): 450.00
+Yearly usage (L): 5475.00
+Estimated Daily Cost (£): £0.02
+Estimated Monthly Cost (£): £0.45
+Estimated Yearly Cost (£): £5.48
+
+Input
+volume = 0, cycles = 10, price = 1
+Exppected: ALl vlaues 0
+Resuult: As preedicted
+shower
+------------------
+Daily usage (L): 0.00
+Monthly usage (L): 0.00
+Yearly usage (L): 0.00
+Estimated Daily Cost (£): £0.00
+Estimated Monthly Cost (£): £0.00
+Estimated Yearly Cost (£): £0.00
+
+
+
+(7)Test for JSON file loading and Library catalogue behaviour
+
+
+1)JSON FIle missing
+
+Input, will delete JSON file
+Expected: Will not work, throws an error
+Result: Just says no book in catalogue, so works without persistence
+
+2) Corrupted JSON
+
+Input: Put invalid data in the JSON - 'lorem ipsom' instead of the books
+Expeected: An  error will be thrown
+Result: Unhandled exception. System.Text.Json.JsonException: 'l' is an invalid start of a value. Path: $ | LineNumber: 0 | BytePositionInLine: 0.
+ ---> System.Text.Json.JsonReaderException: 'l' is an invalid start of a value. LineNumber: 0 | BytePositionInLine: 0.
+   at System.Text.Json.ThrowHelper.ThrowJsonReaderException(Utf8JsonReader& json, ExceptionResource resource, Byte nextByte, ReadOnlySpan`1 bytes)
+   at System.Text.Json.Utf8JsonReader.ConsumeValue(Byte marker)
+   at System.Text.Json.Utf8JsonReader.ReadFirstToken(Byte first)
+   at System.Text.Json.Utf8JsonReader.ReadSingleSegment()
+   at System.Text.Json.Utf8JsonReader.Read()
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, JsonSerializerOptions options, ReadStack& state)
+   --- End of inner exception stack trace ---
+   at System.Text.Json.ThrowHelper.ReThrowWithPath(ReadStack& state, JsonReaderException ex)
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, JsonSerializerOptions options, ReadStack& state)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 utf8Json, JsonTypeInfo`1 jsonTypeInfo, Nullable`1 actualByteCount)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 json, JsonTypeInfo`1 jsonTypeInfo)
+   at MyProject.Calculator.LibraryCatalogue.LoadCatalogue() in /home/kallam/PFC/PartA/Program.cs:line 546
+   at MyProject.Calculator.LibraryCatalogue.LibMain() in /home/kallam/PFC/PartA/Program.cs:line 589
+   at MyProject.Calculator.LibraryCatalogue.Program.Main(String[] args) in /home/kallam/PFC/PartA/Program.cs:line 790
+Exception error
+
+3) Add one book
+Inputs:
+Name - "How to get an expcetional 1st in computer science"
+Author - Kallam Samad
+Genre- Non fiction, autobiography
+
+Expected result -  Will be do able
+
+
+Result - Is a valid book and is added to JSON
+
+    "Title": "How to get an Exceptional 1st in Computer Science",
+    "Author": "Kallam Samad",
+    "Genre": [
+      "Autobiography"
+    ],
+    "IsFiction": false
+  }
+]
+
+4) Remove a book
+
+Input presss 2) remove book, called lord of the rings
+Expected: boook will be remooved
+result: Book 'lord of the rings' removed.
+
+5) Filter by Genre
+Inputs - choose fictiion>choose horor
+Expected output - displays all horror books in fiction
+Result - Displays Books in genre 'Horror':
+- Dracula by Bram Stoker
+
+6) List all books
+
+Innput press 4)
+Expected output - SHows all books
+Output - All books in catalogue:
+- Dracula by Bram Stoker (Horror) [Fiction]
+- Dune by Frank Herbert (Science Fiction) [Fiction]
+- The Girl with the Dragon Tattoo by Stieg Larsson (Crime) [Fiction]
+- The Da Vinci Code by Dan Brown (Thriller) [Fiction]
+- The Story of My Life by Helen Keller (Autobiography) [Non-Fiction]
+- Sapiens: A Brief History of Humankind by Yuval Noah Harari (History) [Non-Fiction]
+- A Brief History of Time by Stephen Hawking (Science) [Non-Fiction]
+- Meditations by Marcus Aurelius (Philosophy) [Non-Fiction]
+- Introduction to Algorithms by Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein (Science, Computer Science) [Non-Fiction]
+- Clean Code: A Handbook of Agile Software Craftsmanship by Robert C. Martin (Science, Computer Science) [Non-Fiction]
+- The Pragmatic Programmer by Andrew Hunt, David Thomas (Science, Computer Science) [Non-Fiction]
+- Design Patterns: Elements of Reusable Object-Oriented Software by Erich Gamma, Richard Helm, Ralph Johnson, John Vlissides (Science, Computer Science) [Non-Fiction]
+- Structure and Interpretation of Computer Programs by Harold Abelson, Gerald Jay Sussman (Science, Computer Science) [Non-Fiction]
+- 1984 by George Orwell (Science Fiction) [Fiction]
+- How to get an Exceptional 1st in Computer Science by Kallam Samad (Autobiography) [Non-Fiction]
+1) Add Book
+ does as expected
+
+
+(8) CSV files tests
+
+1) CSV file present
+
+Input -  A value that is invalid, using ! 
+Expected - Program will read  the csv for any forvvbideenn symbols
+Result - Input contains forbidden symbols. Please try again. It reads, since it rejects the oinput
+
+2) CSV file missing
+
+Input  - Will delete the csv and input !
+Expected - willl still  be reejected but with caveats. The default list of
+forbidden symmbols is  not complete, so some symbols will be accepted
+result  - "Running Household Water Usage & Cost Calculat ForbiddenSymbols.csv not found. Using default list." so it works
+
+3)  All values in CSV removed
+Input - remove all content from CSVs, then input !
+Expected - will accept the ! as  valid
+Result - Accepts !
+
+4) ForbidddenSymbols.csv - adding spaces to it
+Input - space
+Expected- Would still work beecause I use ..trim()
+Result - It workss with spaaces
+
+5) Hex file having less than 16 vallues
+
+input - delete all numbers
+expected - has a fallback list so will work still
+result -  Running Household Water Usage & Cost Calculator
+
+ForbiddenSymbols.csv not found. Using default list.
+SO doesn't work if csv  is deleted
+
+
+
+(9)Hex values
+
+Input        Expected           Result
+1) 15         F             Hexadecimal: 0xF
+2) 1           1            0x1
+3) 2           0x2          0x2
+4)  100       0x64          Hexadecimal: 0x64
+5)-1          invalid input Invalid input! Choose a number from 0-999999999
+6)-1000           invalid input Invalid input! Choose a number from 0-999999999
+7)!           invalid input Invalid input! Choose a number from 0-999999999
+8)@           invalid input Invalid input! Choose a number from 0-999999999
+9)#           invalid input Invalid input! Choose a number from 0-999999999
+10)null        breaks program           CS0037 error
+*/
 
 
 using System;

@@ -1,13 +1,5 @@
 [
   {
-    "Title": "Lord Of the Rings",
-    "Author": "J.R.R. Tolkien",
-    "Genre": [
-      "Adventure"
-    ],
-    "IsFiction": true
-  },
-  {
     "Title": "Dracula",
     "Author": "Bram Stoker",
     "Genre": [
@@ -123,5 +115,13 @@
       "Science Fiction"
     ],
     "IsFiction": true
+  },
+  {
+    "Title": "How to get an Exceptional 1st in Computer Science",
+    "Author": "Kallam Samad",
+    "Genre": [
+      "Autobiography"
+    ],
+    "IsFiction": false
   }
 ]
