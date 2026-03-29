@@ -1,0 +1,127 @@
+[
+  {
+    "Title": "Dracula",
+    "Author": "Bram Stoker",
+    "Genre": [
+      "Horror"
+    ],
+    "IsFiction": true
+  },
+  {
+    "Title": "Dune",
+    "Author": "Frank Herbert",
+    "Genre": [
+      "Science Fiction"
+    ],
+    "IsFiction": true
+  },
+  {
+    "Title": "The Girl with the Dragon Tattoo",
+    "Author": "Stieg Larsson",
+    "Genre": [
+      "Crime"
+    ],
+    "IsFiction": true
+  },
+  {
+    "Title": "The Da Vinci Code",
+    "Author": "Dan Brown",
+    "Genre": [
+      "Thriller"
+    ],
+    "IsFiction": true
+  },
+  {
+    "Title": "The Story of My Life",
+    "Author": "Helen Keller",
+    "Genre": [
+      "Autobiography"
+    ],
+    "IsFiction": false
+  },
+  {
+    "Title": "Sapiens: A Brief History of Humankind",
+    "Author": "Yuval Noah Harari",
+    "Genre": [
+      "History"
+    ],
+    "IsFiction": false
+  },
+  {
+    "Title": "A Brief History of Time",
+    "Author": "Stephen Hawking",
+    "Genre": [
+      "Science"
+    ],
+    "IsFiction": false
+  },
+  {
+    "Title": "Meditations",
+    "Author": "Marcus Aurelius",
+    "Genre": [
+      "Philosophy"
+    ],
+    "IsFiction": false
+  },
+  {
+    "Title": "Introduction to Algorithms",
+    "Author": "Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein",
+    "Genre": [
+      "Science",
+      "Computer Science"
+    ],
+    "IsFiction": false
+  },
+  {
+    "Title": "Clean Code: A Handbook of Agile Software Craftsmanship",
+    "Author": "Robert C. Martin",
+    "Genre": [
+      "Science",
+      "Computer Science"
+    ],
+    "IsFiction": false
+  },
+  {
+    "Title": "The Pragmatic Programmer",
+    "Author": "Andrew Hunt, David Thomas",
+    "Genre": [
+      "Science",
+      "Computer Science"
+    ],
+    "IsFiction": false
+  },
+  {
+    "Title": "Design Patterns: Elements of Reusable Object-Oriented Software",
+    "Author": "Erich Gamma, Richard Helm, Ralph Johnson, John Vlissides",
+    "Genre": [
+      "Science",
+      "Computer Science"
+    ],
+    "IsFiction": false
+  },
+  {
+    "Title": "Structure and Interpretation of Computer Programs",
+    "Author": "Harold Abelson, Gerald Jay Sussman",
+    "Genre": [
+      "Science",
+      "Computer Science"
+    ],
+    "IsFiction": false
+  },
+  {
+    "Title": "1984",
+    "Author": "George Orwell",
+    "Genre": [
+      "Science Fiction"
+    ],
+    "IsFiction": true
+  },
+  {
+    "Title": "How to get an Exceptional 1st in Computer Science",
+    "Author": "Kallam Samad",
+    "Genre": [
+      "Autobiography"
+    ],
+    "IsFiction": false
+  }
+]

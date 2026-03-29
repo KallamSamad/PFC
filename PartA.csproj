@@ -10,11 +10,14 @@
   <ItemGroup>
     <PackageReference Include="CsvHelper" Version="33.1.0" />
   </ItemGroup>
-  <ItemGroup>
-  <None Include="ForbiddenSymbols.csv">
-    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-  </None>
-</ItemGroup>
 
+  <ItemGroup>
+    <None Update="ForbiddenSymbols.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="hexnumbers.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 
 </Project>

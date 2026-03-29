@@ -43,3 +43,192 @@ Estimated Daily Cost (£): £0.02
 Estimated Monthly Cost (£): £0.72
 Estimated Yearly Cost (£): £8.76
 
+shower
+------------------
+Daily usage (L): 2.00
+Monthly usage (L): 60.00
+Yearly usage (L): 730.00
+Estimated Daily Cost (£): £0.01
+Estimated Monthly Cost (£): £0.18
+Estimated Yearly Cost (£): £2.19
+
+2
+------------------
+Daily usage (L): 4.00
+Monthly usage (L): 120.00
+Yearly usage (L): 1460.00
+Estimated Daily Cost (£): £0.01
+Estimated Monthly Cost (£): £0.24
+Estimated Yearly Cost (£): £2.92
+
+s
+------------------
+Daily usage (L): 4.00
+Monthly usage (L): 120.00
+Yearly usage (L): 1460.00
+Estimated Daily Cost (£): £0.09
+Estimated Monthly Cost (£): £2.64
+Estimated Yearly Cost (£): £32.12
+
+!
+------------------
+Daily usage (L): 4.00
+Monthly usage (L): 120.00
+Yearly usage (L): 1460.00
+Estimated Daily Cost (£): £0.01
+Estimated Monthly Cost (£): £0.24
+Estimated Yearly Cost (£): £2.92
+
+11
+------------------
+Daily usage (L): 1.00
+Monthly usage (L): 30.00
+Yearly usage (L): 365.00
+Estimated Daily Cost (£): £0.00
+Estimated Monthly Cost (£): £0.03
+Estimated Yearly Cost (£): £0.37
+
+1
+------------------
+Daily usage (L): 2.00
+Monthly usage (L): 60.00
+Yearly usage (L): 730.00
+Estimated Daily Cost (£): £0.00
+Estimated Monthly Cost (£): £0.12
+Estimated Yearly Cost (£): £1.46
+
+2
+------------------
+Daily usage (L): 4.00
+Monthly usage (L): 120.00
+Yearly usage (L): 1460.00
+Estimated Daily Cost (£): £0.01
+Estimated Monthly Cost (£): £0.24
+Estimated Yearly Cost (£): £2.92
+
+d
+------------------
+Daily usage (L): 9.00
+Monthly usage (L): 270.00
+Yearly usage (L): 3285.00
+Estimated Daily Cost (£): £0.03
+Estimated Monthly Cost (£): £0.81
+Estimated Yearly Cost (£): £9.86
+
+hello world
+------------------
+Daily usage (L): 4.00
+Monthly usage (L): 120.00
+Yearly usage (L): 1460.00
+Estimated Daily Cost (£): £0.01
+Estimated Monthly Cost (£): £0.24
+Estimated Yearly Cost (£): £2.92
+
+Shower
+------------------
+Daily usage (L): 44.00
+Monthly usage (L): 1320.00
+Yearly usage (L): 16060.00
+Estimated Daily Cost (£): £0.11
+Estimated Monthly Cost (£): £3.30
+Estimated Yearly Cost (£): £40.15
+
+Washing Machine
+------------------
+Daily usage (L): 44.00
+Monthly usage (L): 1320.00
+Yearly usage (L): 16060.00
+Estimated Daily Cost (£): £0.11
+Estimated Monthly Cost (£): £3.30
+Estimated Yearly Cost (£): £40.15
+
+Washing-machine
+------------------
+Daily usage (L): 44.00
+Monthly usage (L): 1320.00
+Yearly usage (L): 16060.00
+Estimated Daily Cost (£): £0.11
+Estimated Monthly Cost (£): £3.30
+Estimated Yearly Cost (£): £40.15
+
+LargeAPplianceNAmeand Numbers
+------------------
+Daily usage (L): 0.00
+Monthly usage (L): 0.00
+Yearly usage (L): 0.00
+Estimated Daily Cost (£): £0.00
+Estimated Monthly Cost (£): £0.00
+Estimated Yearly Cost (£): £0.00
+
+2
+------------------
+Daily usage (L): 4.00
+Monthly usage (L): 120.00
+Yearly usage (L): 1460.00
+Estimated Daily Cost (£): £0.01
+Estimated Monthly Cost (£): £0.24
+Estimated Yearly Cost (£): £2.92
+
+Shower
+------------------
+Daily usage (L): 50.00
+Monthly usage (L): 1500.00
+Yearly usage (L): 18250.00
+Estimated Daily Cost (£): £0.10
+Estimated Monthly Cost (£): £3.00
+Estimated Yearly Cost (£): £36.50
+
+SHower
+------------------
+Daily usage (L): 0.00
+Monthly usage (L): 0.00
+Yearly usage (L): 0.00
+Estimated Daily Cost (£): £0.00
+Estimated Monthly Cost (£): £0.00
+Estimated Yearly Cost (£): £0.00
+
+shower
+------------------
+Daily usage (L): 15.00
+Monthly usage (L): 450.00
+Yearly usage (L): 5475.00
+Estimated Daily Cost (£): £0.02
+Estimated Monthly Cost (£): £0.45
+Estimated Yearly Cost (£): £5.48
+
+shower
+------------------
+Daily usage (L): 0.00
+Monthly usage (L): 0.00
+Yearly usage (L): 0.00
+Estimated Daily Cost (£): £0.00
+Estimated Monthly Cost (£): £0.00
+Estimated Yearly Cost (£): £0.00
+
+3
+------------------
+Daily usage (L): 4.00
+Monthly usage (L): 120.00
+Yearly usage (L): 1460.00
+Estimated Daily Cost (£): £0.01
+Estimated Monthly Cost (£): £0.24
+Estimated Yearly Cost (£): £2.92
+
+!
+------------------
+Daily usage (L): 2.00
+Monthly usage (L): 60.00
+Yearly usage (L): 730.00
+Estimated Daily Cost (£): £0.01
+Estimated Monthly Cost (£): £0.18
+Estimated Yearly Cost (£): £2.19
+
+fd
+------------------
+Daily usage (L): 1.00
+Monthly usage (L): 30.00
+Yearly usage (L): 365.00
+Estimated Daily Cost (£): £0.00
+Estimated Monthly Cost (£): £0.03
+Estimated Yearly Cost (£): £0.37
+
