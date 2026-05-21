@@ -20,17 +20,23 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseStaticFiles();
+
 app.Use(async (context, next) =>
 {
+    context.Response.OnStarting(() =>
+    {
+        context.Response.Headers.Remove("X-Frame-Options");
+        context.Response.Headers.Remove("Content-Security-Policy");
+
+        context.Response.Headers["Content-Security-Policy"] =
+            "frame-ancestors 'self' https://kallamsamad.co.uk https://www.kallamsamad.co.uk;";
+
+        return Task.CompletedTask;
+    });
+
     await next();
-
-    context.Response.Headers.Remove("X-Frame-Options");
-
-    context.Response.Headers["Content-Security-Policy"] =
-        "frame-ancestors 'self' https://kallamsamad.co.uk https://www.kallamsamad.co.uk;";
 });
-
-app.UseStaticFiles();
 
 app.UseAntiforgery();
 
