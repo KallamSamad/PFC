@@ -22,13 +22,19 @@ app.UseHttpsRedirection();
 app.UseAntiforgery();
 
 app.MapStaticAssets();
-app.MapRazorComponents<App>()
-    .AddInteractiveServerRenderMode();
 
 app.Use(async (context, next) =>
 {
     context.Response.Headers.Remove("X-Frame-Options");
+
+    context.Response.Headers["Content-Security-Policy"] =
+        "frame-ancestors 'self' https://kallamsamad.co.uk http://kallamsamad.co.uk";
+
     await next();
 });
+
+app.MapRazorComponents<App>()
+    .AddInteractiveServerRenderMode();
+
 
 app.Run();
