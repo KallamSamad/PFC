@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("HouseholdUtilitiesWeb")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4671d4149a952144a0614723b909552904e417ee")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fcd268079d18b0ecf33a364685247bce8ae0249a")]
 [assembly: System.Reflection.AssemblyProductAttribute("HouseholdUtilitiesWeb")]
 [assembly: System.Reflection.AssemblyTitleAttribute("HouseholdUtilitiesWeb")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
