@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "QRiv3sJK1Zs=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\kalla\\Downloads\\PFC-master\\PFC\\PartA.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\kalla\\.nuget\\packages\\csvhelper\\33.1.0\\csvhelper.33.1.0.nupkg.sha512"
+  ],
+  "logs": []
+}

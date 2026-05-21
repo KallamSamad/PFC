@@ -1,0 +1,30 @@
+﻿@page "/console"
+@rendermode InteractiveServer
+@using HouseholdUtilitiesWeb.Services
+@using Microsoft.AspNetCore.Components.Web
+
+<div class="terminal">
+    <pre>@Engine.Output</pre>
+
+    <div class="input-line">
+        <span>&gt;</span>
+        <input @bind="Command"
+               @bind:event="oninput"
+               @onkeyup="HandleKey"
+               class="terminal-input" />
+    </div>
+</div>
+
+@code {
+    private ConsoleEngine Engine = new();
+    private string Command = "";
+
+    private void HandleKey(KeyboardEventArgs e)
+    {
+        if (e.Key != "Enter")
+            return;
+
+        Engine.Submit(Command.Trim());
+        Command = "";
+    }
+}
