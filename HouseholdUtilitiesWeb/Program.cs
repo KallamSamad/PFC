@@ -30,7 +30,7 @@ app.Use(async (context, next) =>
         context.Response.Headers.Remove("Content-Security-Policy");
 
         context.Response.Headers["Content-Security-Policy"] =
-            "frame-ancestors 'self' https://kallamsamad.co.uk https://www.kallamsamad.co.uk;";
+            "frame-ancestors *;";
 
         return Task.CompletedTask;
     });
